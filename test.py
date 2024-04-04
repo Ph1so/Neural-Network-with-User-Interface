@@ -1,23 +1,22 @@
 
 import tensorflow as tf
+from flask import Flask, request, jsonify
+
 
 model = tf.keras.models.load_model('digit_model.keras')
 model.summary()
 
-import sys
-import json
+app = Flask(__name__)
 
-# Receive the array from JavaScript
-data = sys.stdin.read()
-array_received = json.loads(data)
+@app.route('/prediction', methods=['POST'])
+def calculate_sum():
+    data = request.json
+    array = data['array']
+    pred = model.predict(array)
+    return jsonify({pred})
 
-# Add 1 to each element
-prediction = model.predict(array_received)
-print(prediction)
-
-# Send the modified array back to JavaScript
-sys.stdout.write(json.dumps(prediction))
-sys.stdout.flush()
+if __name__ == '__main__':
+    app.run(debug=True)
 
 
 

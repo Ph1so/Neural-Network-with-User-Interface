@@ -144,27 +144,15 @@ function predict() {
   console.log("num black: " + count);
   console.log("array length: " + im.length * im[0].length);
 
-  const { spawn } = require("child_process");
-
-  // Define your 2D array
-  const arrayToSend = im;
-
-  // Spawn a child process for Python
-  const pythonProcess = spawn("python", ["test.py"]);
-
-  // Send the array to the Python script
-  pythonProcess.stdin.write(JSON.stringify(arrayToSend));
-  pythonProcess.stdin.end();
-
-  // Receive the result from the Python script
-  pythonProcess.stdout.on("data", (data) => {
-    const modifiedArray = JSON.parse(data.toString());
-    console.log("Prediction:", modifiedArray);
-  });
-
-  // Handle errors
-  pythonProcess.stderr.on("data", (data) => {
-    console.error(`Error from Python script: ${data}`);
+  //sending and receiving data and prediction
+  $.ajax({
+    type: "POST",
+    url: "//prediction",
+    contentType: "application/json",
+    data: JSON.stringify({ array: im }),
+    success: function (response) {
+      console.log("Prediction received from Python:", response.sum);
+    },
   });
 }
 
