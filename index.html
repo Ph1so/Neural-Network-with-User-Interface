@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas</title>
+    <style>
+      canvas {
+        border: 1px solid black;
+      }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <container>
+      <h1 id="heading" class="heading">Drawing App</h1>
+
+      <canvas id="canvas" class="canvas" width="280" height="280"></canvas>
+
+      <div class="btn-container">
+        <button id="submit" class="btn">Submit</button>
+        <button id="clear" class="btn">Clear</button>
+      </div>
+    </container>
+
+    <script src="script.js"></script>
+    <script src="dist/bundle.js"></script>
+  </body>
+</html>
