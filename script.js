@@ -147,11 +147,11 @@ function predict() {
   //sending and receiving data and prediction
   $.ajax({
     type: "POST",
-    url: "//prediction",
+    url: "/prediction",
     contentType: "application/json",
     data: JSON.stringify({ array: im }),
     success: function (response) {
-      console.log("Prediction received from Python:", response.sum);
+      console.log("Prediction received from Python:", response);
     },
   });
 }
