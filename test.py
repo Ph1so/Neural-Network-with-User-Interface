@@ -1,14 +1,20 @@
 import tensorflow as tf
 import numpy as np
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
+from flask_cors import CORS
 
 model = tf.keras.models.load_model('digit_model.keras')
 model.summary()
 
 app = Flask(__name__)
 
-@app.route('/prediction', methods=['POST'])
-def make_prediction():
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    print('it works')
     data = request.json
     array = data['array']
     
