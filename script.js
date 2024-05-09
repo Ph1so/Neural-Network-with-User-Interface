@@ -147,7 +147,7 @@ function predict() {
   //sending and receiving data and prediction
   $.ajax({
     type: "POST",
-    url: "/prediction",
+    url: "http://localhost:5000/predict",
     contentType: "application/json",
     data: JSON.stringify({ array: im }),
     success: function (response) {
